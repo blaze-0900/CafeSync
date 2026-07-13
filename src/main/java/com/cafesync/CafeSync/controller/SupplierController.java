@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.cafesync.CafeSync.entity.Status;
 import com.cafesync.CafeSync.entity.Supplier;
 import com.cafesync.CafeSync.service.SupplierService;
 
@@ -23,7 +24,10 @@ public class SupplierController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("supplier", new Supplier());
+        model.addAttribute("statuses", Status.values());
+
         return "add-supplier";
     }
 

@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Recipe;
+import com.cafesync.CafeSync.service.IngredientService;
+import com.cafesync.CafeSync.service.ProductService;
 import com.cafesync.CafeSync.service.RecipeService;
 
 @Controller
@@ -14,6 +16,10 @@ public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private IngredientService ingredientService;
 
     @GetMapping
     public String getAllRecipes(Model model) {
@@ -23,7 +29,13 @@ public class RecipeController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("recipe", new Recipe());
+
+        model.addAttribute("products", productService.getAllProducts());
+
+        model.addAttribute("ingredients", ingredientService.getAllIngredients());
+
         return "add-recipe";
     }
 

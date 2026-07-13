@@ -1,0 +1,75 @@
+@charset "UTF-8";
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+}
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #1e1e2f;
+    color: white;
+    position: fixed;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+}
+
+.sidebar a:hover {
+    background: #34344a;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.card-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.login-body {
+    height: 100vh;
+    background-image: url('/images/bgm.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-card {
+    width: 400px;
+    padding: 35px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+.login-card img {
+    display: block;
+    margin: auto;
+    width: 120px;
+}
+
+
+.login-card h2 {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.sidebar-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}

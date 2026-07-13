@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.cafesync.CafeSync.entity.Role;
+import com.cafesync.CafeSync.entity.Status;
 import com.cafesync.CafeSync.entity.User;
 import com.cafesync.CafeSync.service.UserService;
 
@@ -23,7 +25,11 @@ public class UserController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("user", new User());
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("statuses", Status.values());
+
         return "add-user";
     }
 

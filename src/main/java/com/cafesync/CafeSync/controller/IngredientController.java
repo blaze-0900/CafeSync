@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Ingredient;
+import com.cafesync.CafeSync.entity.Status;
 import com.cafesync.CafeSync.service.IngredientService;
 
 @Controller
@@ -23,10 +24,12 @@ public class IngredientController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("ingredient", new Ingredient());
+        model.addAttribute("statuses", Status.values());
+
         return "add-ingredient";
     }
-
     @PostMapping("/save")
     public String saveIngredient(@ModelAttribute Ingredient ingredient) {
         ingredientService.saveIngredient(ingredient);

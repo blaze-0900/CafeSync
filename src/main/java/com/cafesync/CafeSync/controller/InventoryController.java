@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Inventory;
+import com.cafesync.CafeSync.entity.Status;
+import com.cafesync.CafeSync.service.FranchiseService;
+import com.cafesync.CafeSync.service.IngredientService;
 import com.cafesync.CafeSync.service.InventoryService;
 
 @Controller
@@ -14,6 +17,12 @@ public class InventoryController {
 
     @Autowired
     private InventoryService inventoryService;
+    @Autowired
+    private FranchiseService franchiseService;
+    @Autowired
+    private IngredientService ingredientService;
+    
+
 
     @GetMapping
     public String getAllInventory(Model model) {
@@ -23,7 +32,15 @@ public class InventoryController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("inventory", new Inventory());
+
+        model.addAttribute("franchises", franchiseService.getAllFranchises());
+
+        model.addAttribute("ingredients", ingredientService.getAllIngredients());
+
+        model.addAttribute("statuses", Status.values());
+
         return "add-inventory";
     }
 

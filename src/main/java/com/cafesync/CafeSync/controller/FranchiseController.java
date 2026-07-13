@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Franchise;
+import com.cafesync.CafeSync.entity.Status;
 import com.cafesync.CafeSync.service.FranchiseService;
+import com.cafesync.CafeSync.service.UserService;
 
 @Controller
 @RequestMapping("/franchises")
@@ -14,6 +16,8 @@ public class FranchiseController {
 
     @Autowired
     private FranchiseService franchiseService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public String getAllFranchises(Model model) {
@@ -23,7 +27,11 @@ public class FranchiseController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("franchise", new Franchise());
+        model.addAttribute("owners", userService.getAllUsers());
+        model.addAttribute("statuses", Status.values());
+
         return "add-franchise";
     }
 
