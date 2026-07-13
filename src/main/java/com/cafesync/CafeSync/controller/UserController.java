@@ -35,7 +35,17 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user) {
+
+
+        if(user.getRole() == Role.EMPLOYEE) {
+
+            user.setRolePassword(null);
+
+        }
+
+
         userService.saveUser(user);
+
         return "redirect:/users";
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Product;
+import com.cafesync.CafeSync.service.CategoryService;
 import com.cafesync.CafeSync.service.ProductService;
 
 @Controller
@@ -14,6 +15,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping
     public String getAllProducts(Model model) {
@@ -23,7 +26,14 @@ public class ProductController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("product", new Product());
+
+        model.addAttribute(
+            "categories",
+            categoryService.getAllCategories()
+        );
+
         return "add-product";
     }
 

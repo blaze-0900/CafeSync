@@ -65,11 +65,47 @@ placeholder="Enter password"
 required>
 
 </div>
+<div class="mb-3">
+
+<label>Select Role</label>
+
+<select class="form-select" name="role" id="role" onchange="showRolePassword()">
+
+    <option value="">
+        Select Role
+    </option>
+
+    <option value="MANAGER">
+        Manager
+    </option>
+
+    <option value="OWNER">
+        Owner
+    </option>
+
+</select>
+
+</div>
+
+
+<div class="mb-3" id="rolePasswordDiv" style="display:none;">
+
+<label id="rolePasswordLabel">
+    Role Password
+</label>
+
+<input type="password"
+       class="form-control"
+       name="rolePassword"
+       placeholder="Enter role password">
+
+</div>
 
 
 
-<div th:if="${param.error}"
-class="alert alert-danger">
+<div th:if="${error}"
+class="alert alert-danger"
+th:text="${error}">
 
 Invalid email or password
 
@@ -99,6 +135,42 @@ Login
 
 
 </div>
+<script>
+
+function showRolePassword(){
+
+    let role = document.getElementById("role").value;
+
+    let div = document.getElementById("rolePasswordDiv");
+
+    let label = document.getElementById("rolePasswordLabel");
+
+
+    if(role === "MANAGER"){
+
+        div.style.display="block";
+
+        label.innerHTML="Manager Password";
+
+    }
+
+    else if(role === "OWNER"){
+
+        div.style.display="block";
+
+        label.innerHTML="Owner Password";
+
+    }
+
+    else{
+
+        div.style.display="none";
+
+    }
+
+}
+
+</script>
 
 </body>
 

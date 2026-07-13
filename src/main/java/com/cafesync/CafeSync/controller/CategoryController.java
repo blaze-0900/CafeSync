@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Category;
+import com.cafesync.CafeSync.entity.Product;
 import com.cafesync.CafeSync.entity.Status;
 import com.cafesync.CafeSync.service.CategoryService;
 
@@ -22,13 +23,19 @@ public class CategoryController {
         return "categories";
     }
 
+   
+
     @GetMapping("/add")
     public String showAddForm(Model model) {
 
-        model.addAttribute("category", new Category());
-        model.addAttribute("statuses", Status.values());
+        model.addAttribute("product", new Product());
 
-        return "add-category";
+        model.addAttribute(
+            "categories",
+            categoryService.getAllCategories()
+        );
+
+        return "add-product";
     }
 
     @PostMapping("/save")

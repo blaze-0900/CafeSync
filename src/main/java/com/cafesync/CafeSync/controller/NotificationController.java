@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Notification;
+import com.cafesync.CafeSync.service.FranchiseService;
 import com.cafesync.CafeSync.service.NotificationService;
 
 @Controller
@@ -14,6 +15,8 @@ public class NotificationController {
 
     @Autowired
     private NotificationService notificationService;
+    @Autowired
+    private FranchiseService franchiseService;
 
     @GetMapping
     public String getAllNotifications(Model model) {
@@ -23,7 +26,10 @@ public class NotificationController {
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
+
         model.addAttribute("notification", new Notification());
+        model.addAttribute("franchises", franchiseService.getAllFranchises());
+
         return "add-notification";
     }
 

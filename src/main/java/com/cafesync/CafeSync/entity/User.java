@@ -28,6 +28,9 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String phone;
+    
+    @Column
+    private String rolePassword;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -93,5 +96,13 @@ public class User {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+	public String getRolePassword() {
+		return rolePassword;
+	}
+
+	public void setRolePassword(String rolePassword) {
+		this.rolePassword = rolePassword;
+	}
 
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Notifications | CafeSync</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="content">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>Notifications</h2>
+
+<a th:href="@{/notifications/add}" class="btn btn-success">
++ Add Notification
+</a>
+
+</div>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+<th>ID</th>
+<th>Branch</th>
+<th>Title</th>
+<th>Message</th>
+<th>Read</th>
+<th>Created At</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr th:each="notification : ${notifications}">
+
+<td th:text="${notification.notificationId}"></td>
+<td th:text="${notification.franchise.branchName}"></td>
+<td th:text="${notification.title}"></td>
+<td th:text="${notification.message}"></td>
+<td th:text="${notification.isRead ? 'Yes' : 'No'}"></td>
+<td th:text="${notification.createdAt}"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</body>
+
+</html>

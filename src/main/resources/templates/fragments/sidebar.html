@@ -14,9 +14,24 @@
 </div>
 
 
-<a href="/dashboard">
-Dashboard
-</a>
+<li th:if="${role == 'MANAGER'}">
+
+    <a th:href="@{/manager-dashboard}">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+</li>
+
+
+<li th:if="${role == 'OWNER'}">
+
+    <a th:href="@{/owner-dashboard}">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </a>
+
+</li>
 
 <a href="/products">
 Products
@@ -38,7 +53,7 @@ Customers
 Expenses
 </a>
 
-<a href="/logout">
+<a href="/login">
 Logout
 </a>
 
