@@ -82,6 +82,13 @@ required>
     <option value="OWNER">
         Owner
     </option>
+    <option value="ADMIN">
+        Admin
+    </option>
+    <option value="EMPLOYEE">
+        Employee
+    </option>
+    
 
 </select>
 
@@ -161,7 +168,14 @@ function showRolePassword(){
         label.innerHTML="Owner Password";
 
     }
+    else if(role === "ADMIN"){
 
+        div.style.display="block";
+
+        label.innerHTML="Admin Password";
+
+    }
+    
     else{
 
         div.style.display="none";

@@ -7,10 +7,16 @@ body {
 
 .sidebar {
     width: 250px;
-    min-height: 100vh;
+    height: 100vh;
     background: #1e1e2f;
     color: white;
+
     position: fixed;
+    top: 0;
+    left: 0;
+
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 .sidebar a {
@@ -26,7 +32,9 @@ body {
 
 .content {
     margin-left: 250px;
+    min-height: 100vh;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 .card-box {
@@ -72,4 +80,7 @@ body {
     width: 100px;
     height: 100px;
     object-fit: contain;
+}
+*{
+    box-sizing: border-box;
 }

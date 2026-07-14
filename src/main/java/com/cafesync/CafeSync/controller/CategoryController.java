@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import com.cafesync.CafeSync.entity.Category;
 import com.cafesync.CafeSync.entity.Product;
 import com.cafesync.CafeSync.entity.Status;
+import com.cafesync.CafeSync.entity.User;
 import com.cafesync.CafeSync.service.CategoryService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/categories")
@@ -19,6 +22,8 @@ public class CategoryController {
 
     @GetMapping
     public String getAllCategories(Model model) {
+
+
         model.addAttribute("categories", categoryService.getAllCategories());
         return "categories";
     }

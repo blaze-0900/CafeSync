@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Product;
+import com.cafesync.CafeSync.entity.User;
 import com.cafesync.CafeSync.service.CategoryService;
 import com.cafesync.CafeSync.service.ProductService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/products")
@@ -19,8 +22,14 @@ public class ProductController {
     private CategoryService categoryService;
 
     @GetMapping
-    public String getAllProducts(Model model) {
+    public String getAllProducts(Model model, HttpSession session) {
+
+        User user = (User) session.getAttribute("loggedInUser");
+
+        model.addAttribute("user", user);
+
         model.addAttribute("products", productService.getAllProducts());
+
         return "products";
     }
 

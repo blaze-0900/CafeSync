@@ -14,49 +14,91 @@
 </div>
 
 
-<li th:if="${role == 'MANAGER'}">
-
-    <a th:href="@{/manager-dashboard}">
-        <i class="fa-solid fa-house"></i>
-        Dashboard
-    </a>
-
-</li>
 
 
-<li th:if="${role == 'OWNER'}">
+<!-- Dashboard (Already Correct) -->
 
-    <a th:href="@{/owner-dashboard}">
-        <i class="fa-solid fa-house"></i>
-        Dashboard
-    </a>
+<a th:if="${user != null && user.role.name() == 'OWNER'}"
+   th:href="@{/owner-dashboard}">
+    <i class="fa-solid fa-house"></i> Dashboard
+</a>
 
-</li>
+<a th:if="${user != null && user.role.name() == 'MANAGER'}"
+   th:href="@{/manager-dashboard}">
+    <i class="fa-solid fa-house"></i> Dashboard
+</a>
+
+<a th:if="${user != null && user.role.name() == 'ADMIN'}"
+   th:href="@{/admin-dashboard}">
+    <i class="fa-solid fa-house"></i> Dashboard
+</a>
+
+<a th:if="${user != null && user.role.name() == 'EMPLOYEE'}"
+   th:href="@{/employee-dashboard}">
+    <i class="fa-solid fa-house"></i> Dashboard
+</a>
+
+
+<!-- Owner & Admin -->
+
+<a th:if="${user.role.name() == 'OWNER' || user.role.name() == 'ADMIN'}"
+   href="/franchises">
+    Franchises
+</a>
+
+
+<!-- Owner, Manager & Admin -->
+
+<a th:if="${user.role.name() == 'OWNER' || user.role.name() == 'MANAGER' || user.role.name() == 'ADMIN'}"
+   href="/employees">
+    Employees
+</a>
+
+
+<!-- Everyone -->
 
 <a href="/products">
-Products
+    Products
 </a>
 
 <a href="/inventory">
-Inventory
+    Inventory
 </a>
 
 <a href="/orders">
-Orders
+    Orders
 </a>
 
 <a href="/customers">
-Customers
+    Customers
 </a>
 
-<a href="/expenses">
-Expenses
+
+<!-- Owner & Manager -->
+
+<a th:if="${user.role.name() == 'OWNER' || user.role.name() == 'MANAGER'}"
+   href="/expenses">
+    Expenses
+</a>
+
+
+<!-- Manager & Employee -->
+
+<a th:if="${user.role.name() == 'MANAGER' || user.role.name() == 'EMPLOYEE'}"
+   href="/pos">
+    POS Billing
+</a>
+
+
+<!-- Everyone -->
+
+<a href="/notifications">
+    Notifications
 </a>
 
 <a href="/login">
-Logout
+    Logout
 </a>
-
 
 </div>
 

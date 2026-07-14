@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Order Details | CafeSync</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Sidebar -->
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+<div class="content container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            <i class="fa-solid fa-receipt"></i>
+            Order Details
+        </h2>
+
+        <button onclick="window.print()"
+                class="btn btn-success">
+
+            <i class="fa-solid fa-print"></i>
+            Print Bill
+
+        </button>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th width="250">Order ID</th>
+                    <td th:text="${order.orderId}"></td>
+                </tr>
+
+                <tr>
+                    <th>Date & Time</th>
+                    <td th:text="${order.orderDateTime}"></td>
+                </tr>
+
+                <tr>
+                    <th>Employee</th>
+                    <td th:text="${order.employee.user.name}"></td>
+                </tr>
+
+                <tr>
+                    <th>Customer</th>
+                    <td th:text="${order.customer != null ? order.customer.customerName : 'Walk-in Customer'}"></td>
+                </tr>
+
+                <tr>
+                    <th>Total Amount</th>
+                    <td>₹ <span th:text="${order.totalAmount}"></span></td>
+                </tr>
+
+                <tr>
+                    <th>Order Status</th>
+                    <td th:text="${order.orderStatus}"></td>
+                </tr>
+
+                <tr>
+                    <th>Payment Status</th>
+                    <td th:text="${order.paymentStatus}"></td>
+                </tr>
+                <tr>
+    <th>Payment Method</th>
+    <td th:text="${order.payment.paymentMethod}"></td>
+</tr>
+
+<tr>
+    <th>Payment Date</th>
+    <td th:text="${order.payment.paymentDate}"></td>
+</tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                Ordered Items
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-striped table-bordered">
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>Product</th>
+
+                    <th>Quantity</th>
+
+                    <th>Unit Price</th>
+
+                    <th>Total</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="item : ${order.orderItems}">
+
+                    <td th:text="${item.product.productName}"></td>
+
+                    <td th:text="${item.quantity}"></td>
+
+                    <td th:text="${item.unitPrice}"></td>
+
+                    <td th:text="${item.totalPrice}"></td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="sidebar" class="sidebar">
+
+    <div class="text-center p-3">
+        <img th:src="@{/images/logo.jpeg}" class="sidebar-logo">
+    </div>
+
+    <a th:href="@{/admin-dashboard}">
+        <i class="fa fa-home"></i> Dashboard
+    </a>
+
+    <a th:href="@{/users}">Users</a>
+
+    <a th:href="@{/franchises}">Franchises</a>
+
+    <a th:href="@{/employees}">Employees</a>
+
+    <a th:href="@{/products}">Products</a>
+
+    <a th:href="@{/categories}">Categories</a>
+
+    <a th:href="@{/suppliers}">Suppliers</a>
+
+    <a th:href="@{/orders}">Orders</a>
+
+    <a th:href="@{/reports}">Reports</a>
+
+    <a th:href="@{/notifications}">Notifications</a>
+
+    <a th:href="@{/login}">Logout</a>
+
+</div>
+
+</html>

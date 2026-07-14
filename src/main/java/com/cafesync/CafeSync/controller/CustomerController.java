@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.cafesync.CafeSync.entity.Customer;
 import com.cafesync.CafeSync.entity.Status;
+import com.cafesync.CafeSync.entity.User;
 import com.cafesync.CafeSync.service.CustomerService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/customers")
@@ -18,6 +21,8 @@ public class CustomerController {
 
     @GetMapping
     public String getAllCustomers(Model model) {
+    	
+
         model.addAttribute("customers", customerService.getAllCustomers());
         return "customers";
     }

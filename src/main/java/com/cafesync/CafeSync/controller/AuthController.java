@@ -9,6 +9,8 @@ import com.cafesync.CafeSync.entity.Role;
 import com.cafesync.CafeSync.entity.User;
 import com.cafesync.CafeSync.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class AuthController {
 
@@ -18,9 +20,38 @@ public class AuthController {
 
 
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpSession session) {
+
+        if(session.getAttribute("loggedInUser") != null) {
+
+            User user = (User) session.getAttribute("loggedInUser");
+
+            switch(user.getRole()) {
+
+                case OWNER:
+                    return "redirect:/owner-dashboard";
+
+                case MANAGER:
+                    return "redirect:/manager-dashboard";
+
+                case ADMIN:
+                    return "redirect:/admin-dashboard";
+
+                case EMPLOYEE:
+                    return "redirect:/employee-dashboard";
+
+                default:
+                    break;
+            }
+        }
 
         return "auth/login";
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "redirect:/login";
     }
 
 
@@ -30,7 +61,8 @@ public class AuthController {
             @RequestParam String password,
             @RequestParam Role role,
             @RequestParam String rolePassword,
-            Model model) {
+            Model model,
+            HttpSession session) {
 
 
         User user = userService
@@ -81,6 +113,7 @@ public class AuthController {
             return "auth/login";
         }
 
+        session.setAttribute("loggedInUser", user);
 
 
         if(role == Role.OWNER) {
@@ -93,6 +126,26 @@ public class AuthController {
         if(role == Role.MANAGER) {
 
             return "redirect:/manager-dashboard";
+
+        }
+        
+        if(role == Role.ADMIN) {
+
+            return "redirect:/admin-dashboard";
+
+        }
+        if(role != Role.EMPLOYEE) {
+
+            if(user.getRolePassword() == null ||
+               !user.getRolePassword().equals(rolePassword)) {
+
+                model.addAttribute(
+                        "error",
+                        "Invalid Role Password"
+                );
+
+                return "auth/login";
+            }
 
         }
 

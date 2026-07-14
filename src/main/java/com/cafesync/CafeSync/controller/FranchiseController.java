@@ -31,6 +31,7 @@ public class FranchiseController {
         model.addAttribute("franchise", new Franchise());
         model.addAttribute("owners", userService.getAllUsers());
         model.addAttribute("statuses", Status.values());
+        
 
         return "add-franchise";
     }
